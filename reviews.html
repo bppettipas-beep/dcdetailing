@@ -7,7 +7,6 @@
   <link rel="icon" href="photo_0004.jpg" />
   <link rel="apple-touch-icon" href="photo_0004.jpg" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
     /* ── RATING HERO ── */
     .rating-hero {
@@ -476,13 +475,7 @@
   </div>
 </footer>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  if (typeof AOS !== 'undefined') {
-    AOS.init({ once: true, duration: 650, easing: 'ease-out', offset: 60 });
-  } else {
-    document.querySelectorAll('[data-aos]').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
-  }
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
   nav.classList.toggle('scrolled', scrollY > 20);
