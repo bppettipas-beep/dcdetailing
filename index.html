@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DC Detailing Services – Moncton's #1 Car Detailer</title>
+  <link rel="icon" href="photo_0004.jpg" />
+  <link rel="apple-touch-icon" href="photo_0004.jpg" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-photo {
+      position: absolute; inset: 0;
+    }
+
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: brightness(0.28) saturate(1.2);
+      transform: scale(1.03);
+      transition: transform 8s ease;
+    }
+
+    .hero-photo img.loaded { transform: scale(1.0); }
+
+    /* Layered gradients for depth */
+    .hero-grad {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.4) 40%, transparent 70%),
+        radial-gradient(ellipse at 20% 60%, rgba(245,168,0,0.08) 0%, transparent 55%);
+      z-index: 1;
+    }
+
+    /* Big faded "DC" watermark */
+    .hero-watermark {
+      position: absolute;
+      right: -2%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(18rem, 30vw, 32rem);
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(245,168,0,0.07);
+      line-height: 1;
+      z-index: 1;
+      pointer-events: none;
+      letter-spacing: -0.06em;
+      user-select: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 0 72px;
+    }
+
+    .hero-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.1s forwards;
+    }
+
+    .hero-location::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-headline {
+      font-size: clamp(3.8rem, 8.5vw, 8.5rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-headline .line1 { display: block; color: #fff; }
+    .hero-headline .word-pride {
+      display: block;
+      background: linear-gradient(135deg, #ffd166 0%, #f5a800 45%, #c98a00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-headline .line3 { display: block; color: rgba(255,255,255,0.65); }
+
+    .hero-sub-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.38s forwards;
+    }
+
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: rgba(200,200,200,0.85);
+      max-width: 440px;
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .hero-right-block {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+
+    .hero-phone-big {
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      font-weight: 900;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .hero-phone-big:hover { color: var(--gold-light); }
+
+    .hero-phone-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .hero-rating-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15,15,15,0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(245,168,0,0.3);
+      border-radius: 40px;
+      padding: 8px 16px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .hero-rating-pill .stars { color: var(--gold); letter-spacing: 1px; }
+    .hero-rating-pill .score { color: #fff; }
+    .hero-rating-pill .count { color: var(--muted); }
+
+    /* Scroll indicator */
+    .hero-scroll-cue {
+      position: absolute;
+      bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.2s forwards;
+    }
+
+    .hero-scroll-cue span {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .scroll-mouse {
+      width: 22px; height: 34px;
+      border: 1.5px solid rgba(245,168,0,0.4);
+      border-radius: 12px;
+      display: flex; justify-content: center;
+      padding-top: 5px;
+    }
+
+    .scroll-mouse::after {
+      content: '';
+      width: 3px; height: 7px;
+      background: var(--gold);
+      border-radius: 2px;
+      animation: scrollBob 1.8s ease infinite;
+    }
+
+    /* ══════════════════════════════════════════
+       MARQUEE TICKER
+    ══════════════════════════════════════════ */
+    .marquee-wrap {
+      background: var(--gold);
+      overflow: hidden;
+      padding: 0;
+      border-top: none;
+      border-bottom: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-track:hover { animation-play-state: paused; }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 14px 0;
+      white-space: nowrap;
+    }
+
+    .marquee-text {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #0a0a0a;
+      padding: 0 28px;
+    }
+
+    .marquee-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.3);
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════════
+       INTRO SPLIT
+    ══════════════════════════════════════════ */
+    .intro-split {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .intro-logo-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+
+    .intro-logo-ring {
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      padding: 5px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+      box-shadow: 0 0 60px rgba(245,168,0,0.22), 0 24px 60px rgba(0,0,0,0.5);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .intro-logo-ring img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #0a0a0a;
+    }
+
+    .intro-logo-name {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .intro-logo-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .intro-text-side {}
+
+    .intro-text-side h2 {
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      line-height: 1.08;
+      margin-bottom: 20px;
+    }
+
+    .intro-text-side p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.82;
+      margin-bottom: 20px;
+      max-width: 560px;
+    }
+
+    .intro-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--light);
+      transition: all 0.2s;
+    }
+
+    .chip:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ══════════════════════════════════════════
+       EDITORIAL SERVICES
+    ══════════════════════════════════════════ */
+    .svc-row {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 260px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svc-row:last-child { border-bottom: none; }
+
+    .svc-row-photo {
+      position: relative;
+      overflow: hidden;
+      height: 260px;
+    }
+
+    .svc-row-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease, filter 0.4s;
+      filter: brightness(0.85) saturate(1.1);
+    }
+
+    .svc-row:hover .svc-row-photo img {
+      transform: scale(1.04);
+      filter: brightness(1) saturate(1.2);
+    }
+
+    .svc-row-body {
+      padding: 36px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      background: var(--card);
+    }
+
+    /* Alternating: odd rows = photo left; even = photo right */
+    .svc-row.flip { direction: rtl; }
+    .svc-row.flip > * { direction: ltr; }
+
+    .svc-num {
+      position: absolute;
+      top: -20px; right: 24px;
+      font-size: 9rem;
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(245,168,0,0.09);
+      line-height: 1;
+      pointer-events: none;
+      letter-spacing: -0.05em;
+      z-index: 0;
+    }
+
+    .svc-row-body > * { position: relative; z-index: 1; }
+
+    .svc-category {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .svc-category::before {
+      content: '';
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--gold);
+    }
+
+    .svc-row-body h3 {
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .svc-row-body p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.72;
+      max-width: 480px;
+      margin-bottom: 20px;
+    }
+
+    .svc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 20px;
+    }
+
+    .svc-tag {
+      background: rgba(245,168,0,0.1);
+      border: 1px solid rgba(245,168,0,0.2);
+      border-radius: 4px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    /* ══════════════════════════════════════════
+       STATS ON PHOTO
+    ══════════════════════════════════════════ */
+    .stats-photo-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-photo-bg {
+      position: absolute; inset: 0;
+    }
+
+    .stats-photo-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.1) saturate(0.5);
+    }
+
+    .stats-photo-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(8,8,8,0.7);
+    }
+
+    .stats-content {
+      position: relative; z-index: 1;
+      padding: 96px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .stat-block {
+      padding: 52px 32px;
+      text-align: center;
+      border: 1px solid rgba(245,168,0,0.1);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .stat-block:hover { background: rgba(245,168,0,0.04); }
+
+    .stat-block::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+
+    .stat-block:hover::before { transform: scaleX(1); }
+
+    .stat-big {
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #ffd166, #f5a800);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-desc {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(200,200,200,0.6);
+    }
+
+    /* ══════════════════════════════════════════
+       PHOTO MOSAIC
+    ══════════════════════════════════════════ */
+    .mosaic {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 10px;
+    }
+
+    .mosaic-item {
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .mosaic-item.tall { grid-row: span 2; border-radius: 14px; }
+
+    .mosaic-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s ease, filter 0.35s;
+      filter: brightness(0.88);
+    }
+
+    .mosaic-item:hover img { transform: scale(1.07); filter: brightness(1.05); }
+
+    .mosaic-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.55) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .mosaic-item:hover::after { opacity: 1; }
+
+    /* ══════════════════════════════════════════
+       GOLD QUOTE SECTION
+    ══════════════════════════════════════════ */
+    .gold-section {
+      background: var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gold-section::before {
+      content: '"';
+      position: absolute;
+      left: -2%;
+      top: -20%;
+      font-size: 40rem;
+      font-weight: 900;
+      color: rgba(0,0,0,0.06);
+      line-height: 1;
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+
+    .gold-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 100px 28px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gq-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .gq-text {
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      color: #0a0a0a;
+      line-height: 1.55;
+      margin-bottom: 36px;
+      font-style: italic;
+    }
+
+    .gq-author-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .gq-av {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: #0a0a0a;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 0.95rem; color: var(--gold);
+    }
+
+    .gq-name { font-size: 0.95rem; font-weight: 800; color: #0a0a0a; }
+    .gq-meta { font-size: 0.78rem; color: rgba(0,0,0,0.5); margin-top: 2px; }
+
+    /* ══════════════════════════════════════════
+       REVIEWS STRIP
+    ══════════════════════════════════════════ */
+    .reviews-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .rev-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all 0.3s;
+      display: flex; flex-direction: column;
+    }
+
+    .rev-card:hover {
+      border-color: rgba(245,168,0,0.32);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+    }
+
+    .rev-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 14px; }
+    .rev-text { font-size: 0.89rem; color: #ccc; line-height: 1.75; flex: 1; margin-bottom: 20px; }
+
+    .rev-foot {
+      display: flex; align-items: center; gap: 11px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .rev-av {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 0.82rem; color: var(--black); flex-shrink: 0;
+    }
+
+    .rev-name { font-size: 0.85rem; font-weight: 700; }
+    .rev-date { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+    /* ══════════════════════════════════════════
+       MEET DISHANT
+    ══════════════════════════════════════════ */
+    .meet-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .meet-visual {
+      position: relative;
+    }
+
+    .meet-img-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+    }
+
+    .meet-img-wrap img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    .meet-overlay-card {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--gold);
+      border-radius: 14px;
+      padding: 20px 22px;
+      text-align: center;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+
+    .meet-overlay-card .big { font-size: 2.2rem; font-weight: 900; color: #0a0a0a; line-height: 1; }
+    .meet-overlay-card .lbl { font-size: 0.7rem; font-weight: 700; color: rgba(0,0,0,0.6); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+
+    .meet-text h2 { font-size: clamp(1.9rem, 3vw, 2.8rem); line-height: 1.1; margin-bottom: 16px; }
+    .meet-text p { font-size: 0.95rem; color: var(--muted); line-height: 1.82; margin-bottom: 16px; }
+
+    .meet-facts {
+      display: flex; gap: 28px; flex-wrap: wrap;
+      margin: 28px 0 32px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mf { }
+    .mf .n { font-size: 1.9rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .mf .l { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.8px; color: var(--muted); margin-top: 3px; }
+
+    /* ══════════════════════════════════════════
+       PROCESS
+    ══════════════════════════════════════════ */
+    .process-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      position: relative;
+    }
+
+    .process-row::before {
+      content: '';
+      position: absolute;
+      top: 52px;
+      left: calc(100% / 6);
+      right: calc(100% / 6);
+      height: 1px;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(245,168,0,0.4) 0px,
+        rgba(245,168,0,0.4) 8px,
+        transparent 8px,
+        transparent 18px
+      );
+    }
+
+    .proc-step {
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      padding: 0 28px;
+    }
+
+    .proc-circle {
+      width: 104px; height: 104px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: radial-gradient(circle at center, rgba(245,168,0,0.08) 0%, transparent 70%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+      position: relative; z-index: 1;
+      box-shadow: 0 0 30px rgba(245,168,0,0.12);
+      transition: all 0.3s;
+    }
+
+    .proc-step:hover .proc-circle {
+      box-shadow: 0 0 50px rgba(245,168,0,0.3);
+      transform: scale(1.06);
+    }
+
+    .proc-num {
+      font-size: 0.6rem; font-weight: 900; letter-spacing: 2px;
+      color: var(--gold); text-transform: uppercase; line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .proc-icon { font-size: 1.8rem; line-height: 1; }
+
+    .proc-step h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
+    .proc-step p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; max-width: 190px; }
+
+    /* ══════════════════════════════════════════
+       KEYFRAMES
+    ══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes scrollBob {
+      0%,100% { transform: translateY(0); opacity: 1; }
+      80% { transform: translateY(10px); opacity: 0; }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .svc-row-body { padding: 48px 36px; }
+      .intro-split { grid-template-columns: 1fr 1.8fr; gap: 48px; }
+      .meet-grid { grid-template-columns: 1fr; gap: 48px; }
+      .meet-visual { max-width: 400px; margin: 0 auto; }
+    }
+
+    @media (max-width: 860px) {
+      .svc-row, .svc-row.flip { grid-template-columns: 1fr; direction: ltr; }
+      .svc-row-photo { height: 200px; }
+      .svc-row-body { padding: 28px 24px; }
+      .svc-num { font-size: 6rem; top: -10px; right: 14px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px; }
+      .mosaic-item.tall { grid-row: span 1; }
+      .reviews-row { grid-template-columns: 1fr 1fr; }
+      .process-row { grid-template-columns: 1fr; gap: 40px; }
+      .process-row::before { display: none; }
+      .intro-split { grid-template-columns: 1fr; }
+      .intro-logo-side { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-sub-row { flex-direction: column; align-items: flex-start; }
+      .hero-right-block { align-items: flex-start; }
+      .hero-phone-big { font-size: 1.6rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-row { grid-template-columns: 1fr; }
+      .mosaic { grid-template-columns: 1fr; }
+      .mosaic-item { height: 220px; }
+      .hero-watermark { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="photo_0004.jpg" alt="DC Detailing Services" />
+      <div class="nav-logo-text">
+        <span class="name">DC Detailing</span>
+        <span class="sub">Services</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="hamburger" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mob">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="reviews.html">Reviews</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="m-cta">Book Now</a>
+</div>
+
+<!-- ═══════════════════════════════════
+     HERO
+═══════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-photo">
+    <img src="photo_0001.jpg" alt="Car interior by DC Detailing" id="heroImg" />
+  </div>
+  <div class="hero-grad"></div>
+  <div class="hero-watermark">DC</div>
+
+  <div class="container hero-content">
+    <div class="hero-location">Moncton, New Brunswick</div>
+
+    <h1 class="hero-headline">
+      <span class="line1">We Take</span>
+      <span class="word-pride">Pride.</span>
+      <span class="line3">In Your Ride.</span>
+    </h1>
+
+    <div class="hero-sub-row">
+      <div>
+        <p class="hero-tagline">Professional car detailing by Dishant — restoring your vehicle to showroom condition, inside and out. Trusted by 90+ customers across Moncton.</p>
+        <div class="hero-btns">
+          <a href="services.html" class="btn btn-gold">Explore Services</a>
+          <a href="gallery.html" class="btn btn-outline">View Our Work</a>
+        </div>
+      </div>
+      <div class="hero-right-block">
+        <div class="hero-rating-pill">
+          <span class="stars">★★★★★</span>
+          <span class="score">5.0</span>
+          <span class="count">· 90+ Reviews</span>
+        </div>
+        <div>
+          <div class="hero-phone-label">Call to Book</div>
+          <a href="tel:5069406494" class="hero-phone-big">(506) 940-6494</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-mouse"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     MARQUEE
+═══════════════════════════════════ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <!-- Repeated twice for seamless loop -->
+    <div class="marquee-item"><span class="marquee-text">Interior Detailing</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Exterior Detailing</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Full Detail Package</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Stain Removal</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Odour Elimination</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Pick-Up &amp; Drop-Off</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">5.0 ★ Google Rating</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Moncton, NB</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Interior Detailing</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Exterior Detailing</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Full Detail Package</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Stain Removal</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Odour Elimination</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Pick-Up &amp; Drop-Off</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">5.0 ★ Google Rating</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span class="marquee-text">Moncton, NB</span><span class="marquee-dot"></span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     INTRO
+═══════════════════════════════════ -->
+<section class="section-wrap">
+  <div class="container">
+    <div class="intro-split">
+      <div class="intro-logo-side" data-aos="fade-right">
+        <div class="intro-logo-ring">
+          <img src="photo_0004.jpg" alt="DC Detailing Services" />
+        </div>
+        <div class="intro-logo-name">DC Detailing Services</div>
+        <div class="intro-logo-sub">Moncton, NB</div>
+      </div>
+      <div class="intro-text-side" data-aos="fade-left" data-aos-delay="80">
+        <div class="section-tag">About DC Detailing</div>
+        <h2 class="section-title">The Detail That<br>Makes the Difference</h2>
+        <div class="gold-line"></div>
+        <p>Dishant founded DC Detailing Services with one mission: treat every car the way he'd want his own treated. No shortcuts, no missed spots, no excuses — just professional results every single time.</p>
+        <p>From a quick interior refresh to a complete bumper-to-bumper transformation, DC Detailing delivers the kind of results that have customers coming back — and sending their friends.</p>
+        <div class="intro-chips">
+          <span class="chip">✓ Interior Detailing</span>
+          <span class="chip">✓ Exterior Detailing</span>
+          <span class="chip">✓ Stain Removal</span>
+          <span class="chip">✓ Odour Elimination</span>
+          <span class="chip">✓ Pick-Up & Drop-Off</span>
+          <span class="chip">✓ Flexible Scheduling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     EDITORIAL SERVICES
+═══════════════════════════════════ -->
+<div style="border-top:1px solid var(--border);">
+
+  <!-- Service 01 -->
+  <div class="svc-row" data-aos="fade-up">
+    <div class="svc-row-photo">
+      <img src="photo_0005.jpg" alt="Interior detailing — Cadillac" />
+    </div>
+    <div class="svc-row-body">
+      <div class="svc-num">01</div>
+      <div class="svc-category">Service</div>
+      <h3>Interior<br>Detailing</h3>
+      <p>A full deep clean of every surface inside your vehicle — seats, carpets, dashboard, door panels, vents, and every crevice in between. We leave no corner untouched.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Deep Vacuum</span>
+        <span class="svc-tag">Leather Conditioning</span>
+        <span class="svc-tag">Odour Removal</span>
+        <span class="svc-tag">Stain Treatment</span>
+      </div>
+      <a href="services.html" class="btn btn-gold">Learn More →</a>
+    </div>
+  </div>
+
+  <!-- Service 02 (flipped) -->
+  <div class="svc-row flip" data-aos="fade-up">
+    <div class="svc-row-photo">
+      <img src="photo_0001.jpg" alt="Exterior detailing — BMW" />
+    </div>
+    <div class="svc-row-body">
+      <div class="svc-num">02</div>
+      <div class="svc-category">Service</div>
+      <h3>Exterior<br>Detailing</h3>
+      <p>Hand wash, clay bar decontamination, polish, and protective wax that brings your paint back to life. Your car will turn heads every time you drive it.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Hand Wash</span>
+        <span class="svc-tag">Clay Bar</span>
+        <span class="svc-tag">Polish & Wax</span>
+        <span class="svc-tag">Tire Dressing</span>
+      </div>
+      <a href="services.html" class="btn btn-gold">Learn More →</a>
+    </div>
+  </div>
+
+  <!-- Service 03 -->
+  <div class="svc-row" data-aos="fade-up">
+    <div class="svc-row-photo">
+      <img src="photo_0003.jpg" alt="Full detail — Dodge Charger" />
+    </div>
+    <div class="svc-row-body">
+      <div class="svc-num">03</div>
+      <div class="svc-category">Service</div>
+      <h3>Full Detail<br>Package</h3>
+      <p>The complete inside-and-out transformation. Interior deep clean, exterior wash and wax, plus all the finishing details. The ultimate treatment for your vehicle.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Interior + Exterior</span>
+        <span class="svc-tag">Showroom Finish</span>
+        <span class="svc-tag">Full Inspection</span>
+        <span class="svc-tag">Pick-Up Available</span>
+      </div>
+      <a href="services.html" class="btn btn-gold">Learn More →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════
+     STATS ON PHOTO
+═══════════════════════════════════ -->
+<div class="stats-photo-section">
+  <div class="stats-photo-bg">
+    <img src="photo_0003.jpg" alt="" />
+  </div>
+  <div class="container stats-content">
+    <div style="text-align:center; margin-bottom:56px;" data-aos="fade-up">
+      <div class="section-tag" style="color:rgba(245,168,0,0.8);">By The Numbers</div>
+      <h2 class="section-title" style="color:#fff;">Trusted By Moncton</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-block" data-aos="fade-up" data-aos-delay="0">
+        <div class="stat-big" data-target="5" data-suffix=".0">0</div>
+        <div class="stat-desc">Google Star Rating</div>
+      </div>
+      <div class="stat-block" data-aos="fade-up" data-aos-delay="80">
+        <div class="stat-big" data-target="90" data-suffix="+">0</div>
+        <div class="stat-desc">5-Star Reviews</div>
+      </div>
+      <div class="stat-block" data-aos="fade-up" data-aos-delay="160">
+        <div class="stat-big" data-target="100" data-suffix="%">0</div>
+        <div class="stat-desc">Satisfaction Rate</div>
+      </div>
+      <div class="stat-block" data-aos="fade-up" data-aos-delay="240">
+        <div class="stat-big" data-target="2" data-suffix="+ Yrs">0</div>
+        <div class="stat-desc">Serving Moncton</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PHOTO MOSAIC
+═══════════════════════════════════ -->
+<section class="section-wrap dark">
+  <div class="container">
+    <div class="section-tag" data-aos="fade-up">Our Work</div>
+    <h2 class="section-title" data-aos="fade-up" data-aos-delay="60">Results That<br>Speak Volumes</h2>
+    <div class="gold-line" data-aos="fade-up" data-aos-delay="100"></div>
+    <div class="mosaic" data-aos="fade-up" data-aos-delay="140">
+      <div class="mosaic-item tall">
+        <img src="photo_0005.jpg" alt="Cadillac interior detail" />
+      </div>
+      <div class="mosaic-item">
+        <img src="photo_0001.jpg" alt="BMW interior detail" />
+      </div>
+      <div class="mosaic-item">
+        <img src="photo_0004.jpg" alt="DC Detailing Services logo" />
+      </div>
+      <div class="mosaic-item">
+        <img src="photo_0003.jpg" alt="Dodge Charger interior" />
+      </div>
+      <div class="mosaic-item" style="background:var(--card); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; text-decoration:none; border:1px solid var(--border); transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(245,168,0,0.4)'" onmouseout="this.style.borderColor='rgba(245,168,0,0.13)'">
+        <span style="font-size:2rem;">📸</span>
+        <a href="gallery.html" style="font-size:0.85rem; font-weight:700; color:var(--gold); text-decoration:none; text-align:center; line-height:1.4;">View Full<br>Gallery →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     GOLD QUOTE
+═══════════════════════════════════ -->
+<section class="gold-section">
+  <div class="gold-inner" data-aos="fade-up">
+    <span class="gq-label">Customer Review</span>
+    <p class="gq-text">"Dishant was incredibly professional and took the time to explain the entire cleaning process. It's clear they don't cut corners. My car looks absolutely incredible — truly the best in town."</p>
+    <div class="gq-author-row">
+      <div class="gq-av">G</div>
+      <div>
+        <div class="gq-name">GURJEET SINGH</div>
+        <div class="gq-meta">Verified Google Review · Moncton, NB</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     REVIEWS
+═══════════════════════════════════ -->
+<section class="section-wrap">
+  <div class="container">
+    <div class="section-tag" data-aos="fade-up">What People Say</div>
+    <h2 class="section-title" data-aos="fade-up" data-aos-delay="60">90+ Reasons to<br>Choose DC</h2>
+    <div class="gold-line" data-aos="fade-up" data-aos-delay="100"></div>
+    <div class="reviews-row">
+      <div class="rev-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Amazing job. My car looks brand new! The owner has an incredible attention to detail and took his time to make sure he got every single spot."</p>
+        <div class="rev-foot"><div class="rev-av">E</div><div><div class="rev-name">Emily Ward</div><div class="rev-date">5 months ago · Google</div></div></div>
+      </div>
+      <div class="rev-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"I travelled all the way from PEI just for his service — totally worth it. He treated my car like his own. Super friendly and professional. Coming back for sure."</p>
+        <div class="rev-foot"><div class="rev-av">V</div><div><div class="rev-name">Vanshdeep Singh Chahal</div><div class="rev-date">5 months ago · Google</div></div></div>
+      </div>
+      <div class="rev-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"My first and best experience ever — truly! Looked just like the day I bought it. Spotless, literally like new. Budget-friendly too. Highly, highly recommend!"</p>
+        <div class="rev-foot"><div class="rev-av">R</div><div><div class="rev-name">Ridhi Rahar</div><div class="rev-date">5 days ago · Google</div></div></div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;" data-aos="fade-up">
+      <a href="reviews.html" class="btn btn-ghost">Read All 90+ Reviews →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     PROCESS
+═══════════════════════════════════ -->
+<section class="section-wrap dark">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:64px;" data-aos="fade-up">
+      <div class="section-tag">Simple Process</div>
+      <h2 class="section-title">How It Works</h2>
+      <div class="gold-line" style="margin: 18px auto 0;"></div>
+    </div>
+    <div class="process-row">
+      <div class="proc-step" data-aos="fade-up" data-aos-delay="0">
+        <div class="proc-circle">
+          <div class="proc-num">Step 01</div>
+          <div class="proc-icon">📞</div>
+        </div>
+        <h3>Call & Book</h3>
+        <p>Text or call Dishant at (506) 940-6494. Get a fast, honest quote and choose your time slot.</p>
+      </div>
+      <div class="proc-step" data-aos="fade-up" data-aos-delay="120">
+        <div class="proc-circle">
+          <div class="proc-num">Step 02</div>
+          <div class="proc-icon">🔑</div>
+        </div>
+        <h3>Hand Over the Keys</h3>
+        <p>Drop off at our Moncton location or use our convenient pick-up service. We take it from there.</p>
+      </div>
+      <div class="proc-step" data-aos="fade-up" data-aos-delay="240">
+        <div class="proc-circle">
+          <div class="proc-num">Step 03</div>
+          <div class="proc-icon">✨</div>
+        </div>
+        <h3>Drive Away Spotless</h3>
+        <p>In 2–4 hours, your car is showroom clean — just like the day you bought it, if not better.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     MEET DISHANT
+═══════════════════════════════════ -->
+<section class="section-wrap">
+  <div class="container">
+    <div class="meet-grid">
+      <div class="meet-visual" data-aos="fade-right">
+        <div class="meet-img-wrap">
+          <img src="photo_0004.jpg" alt="DC Detailing Services — Dishant" />
+        </div>
+        <div class="meet-overlay-card">
+          <div class="big">90+</div>
+          <div class="lbl">5-Star Reviews</div>
+        </div>
+      </div>
+      <div class="meet-text" data-aos="fade-left" data-aos-delay="80">
+        <div class="section-tag">The Man Behind DC</div>
+        <h2>Meet Dishant</h2>
+        <div class="gold-line"></div>
+        <p>Dishant started DC Detailing Services because of a genuine passion for cars — not just a job. Every vehicle that comes through the door gets the same obsessive care and attention that he'd want for his own.</p>
+        <p>What's built DC's reputation isn't advertising — it's the kind of results that leave customers speechless when they see their car, and send their friends the very next week.</p>
+        <div class="meet-facts">
+          <div class="mf"><div class="n">5.0</div><div class="l">Star Rating</div></div>
+          <div class="mf"><div class="n">90+</div><div class="l">Reviews</div></div>
+          <div class="mf"><div class="n">100%</div><div class="l">Satisfaction</div></div>
+          <div class="mf"><div class="n">2+</div><div class="l">Years Active</div></div>
+        </div>
+        <a href="contact.html" class="btn btn-gold">Book With Dishant →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     CTA
+═══════════════════════════════════ -->
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-tag" data-aos="fade-up">Ready to Book?</div>
+    <h2 data-aos="fade-up" data-aos-delay="60">Your Car Deserves<br><span class="gradient-text">The DC Treatment</span></h2>
+    <p data-aos="fade-up" data-aos-delay="120">Call Dishant today — easy booking, fast turnaround, showroom results guaranteed.</p>
+    <div class="cta-btns" data-aos="fade-up" data-aos-delay="180">
+      <a href="tel:5069406494" class="btn btn-gold">📞 &nbsp;(506) 940-6494</a>
+      <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><img src="photo_0004.jpg" alt="DC Detailing" /><span>DC Detailing Services</span></a>
+        <p>Moncton's most trusted car detailing service. Dishant treats every vehicle like his own, delivering showroom results every time.</p>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Interior Detailing</a></li><li><a href="services.html">Exterior Detailing</a></li><li><a href="services.html">Full Detail Package</a></li><li><a href="services.html">Stain & Odour Removal</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><a href="tel:5069406494" class="big-phone">(506) 940-6494</a><p>Moncton, NB<br>Canada</p></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DC Detailing Services · Moncton, NB · All rights reserved.</p>
+      <div class="footer-badge">⭐ 5.0 on Google Reviews</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ once: true, duration: 700, easing: 'ease-out', offset: 50 });
+  } else {
+    document.querySelectorAll('[data-aos]').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+  }
+
+  // Nav scroll
+  const nav = document.getElementById('navbar');
+  const update = () => nav.classList.toggle('scrolled', scrollY > 20);
+  window.addEventListener('scroll', update); update();
+
+  // Hamburger
+  const ham = document.getElementById('ham'), mob = document.getElementById('mob');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
+
+  // Active nav
+  const page = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(a => {
+    if (a.getAttribute('href') === page) a.classList.add('active');
+  });
+
+  // Hero photo Ken Burns
+  const heroImg = document.getElementById('heroImg');
+  if (heroImg) heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+  if (heroImg && heroImg.complete) heroImg.classList.add('loaded');
+
+  // Count-up (eased)
+  const cObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const isFloat = !Number.isInteger(target);
+      let start = null;
+      const tick = ts => {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / 1400, 1);
+        const ep = 1 - Math.pow(1 - p, 3);
+        el.textContent = (isFloat ? (target * ep).toFixed(1) : Math.floor(target * ep)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      cObs.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.stat-big[data-target]').forEach(el => cObs.observe(el));
+</script>
+</body>
+</html>

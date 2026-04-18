@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Book – DC Detailing Services Moncton</title>
+  <link rel="icon" href="photo_0004.jpg" />
+  <link rel="apple-touch-icon" href="photo_0004.jpg" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    /* ── CONTACT LAYOUT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    /* ── INFO SIDE ── */
+    .contact-info { display: flex; flex-direction: column; gap: 24px; }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 26px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      transition: all 0.3s;
+    }
+
+    .info-card:hover {
+      border-color: var(--border-h);
+      transform: translateX(4px);
+    }
+
+    .info-icon {
+      width: 50px; height: 50px; min-width: 50px;
+      background: rgba(245,168,0,0.1);
+      border: 1px solid rgba(245,168,0,0.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .info-card h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .info-card a, .info-card p {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      line-height: 1.5;
+    }
+
+    .info-card a:hover { color: var(--gold); }
+
+    .info-card .sub {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* Hours table */
+    .hours-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 26px;
+    }
+
+    .hours-card h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .hours-table tr { border-bottom: 1px solid var(--border); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 10px 0; font-size: 0.88rem; }
+    .hours-table td:first-child { color: var(--muted); }
+    .hours-table td:last-child { color: var(--text); font-weight: 600; text-align: right; }
+
+    .open-badge {
+      display: inline-block;
+      background: rgba(52,199,89,0.15);
+      color: #4cd964;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      margin-left: 8px;
+    }
+
+    /* ── FORM SIDE ── */
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 40px 36px;
+    }
+
+    .form-card h2 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .form-card > p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 30px;
+      line-height: 1.65;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--light);
+      letter-spacing: 0.3px;
+    }
+
+    .form-group label span { color: var(--gold); }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.92rem;
+      transition: all 0.2s;
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: rgba(245,168,0,0.04);
+      box-shadow: 0 0 0 3px rgba(245,168,0,0.1);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--muted);
+    }
+
+    .form-group select option { background: #1a1a1a; }
+
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 15px;
+      font-size: 1rem;
+      font-weight: 800;
+      border-radius: 10px;
+      cursor: pointer;
+      border: none;
+      background: var(--gold);
+      color: var(--black);
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.3px;
+    }
+
+    .form-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(245,168,0,0.4);
+    }
+
+    .form-submit::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.55s;
+    }
+
+    .form-submit:hover::after { transform: translateX(100%); }
+
+    .form-disclaimer {
+      text-align: center;
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .form-success .check {
+      width: 64px; height: 64px;
+      background: rgba(52,199,89,0.15);
+      border: 2px solid #4cd964;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin: 0 auto 20px;
+    }
+
+    .form-success h3 { font-size: 1.4rem; margin-bottom: 8px; }
+    .form-success p { color: var(--muted); font-size: 0.9rem; }
+
+    /* ── QUICK CONTACT STRIP ── */
+    .quick-strip {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quick-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      divide-x: 1px solid var(--border);
+    }
+
+    .quick-item {
+      padding: 36px 28px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .quick-item:last-child { border-right: none; }
+
+    .quick-icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
+    .quick-item h3 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+    .quick-item p { font-size: 0.85rem; color: var(--muted); margin-bottom: 14px; }
+    .quick-item a { font-size: 1.05rem; font-weight: 800; color: var(--gold); text-decoration: none; }
+    .quick-item a:hover { text-decoration: underline; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 28px 24px; }
+    }
+
+    @media (max-width: 620px) {
+      .form-row { grid-template-columns: 1fr; }
+      .quick-inner { grid-template-columns: 1fr; }
+      .quick-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .quick-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="photo_0004.jpg" alt="DC Detailing Services" />
+      <div class="nav-logo-text">
+        <span class="name">DC Detailing</span>
+        <span class="sub">Services</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mob">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="reviews.html">Reviews</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="m-cta">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span>Contact</div>
+    <h1>Book Your <span class="gradient-text">Detail</span></h1>
+    <p>Ready to give your car the DC treatment? Get in touch with Dishant for a fast, friendly quote and easy booking.</p>
+  </div>
+</div>
+
+<!-- QUICK CONTACT STRIP -->
+<div class="quick-strip">
+  <div class="container">
+    <div class="quick-inner">
+      <div class="quick-item">
+        <span class="quick-icon">📞</span>
+        <h3>Call or Text</h3>
+        <p>The fastest way to book</p>
+        <a href="tel:5069406494">(506) 940-6494</a>
+      </div>
+      <div class="quick-item">
+        <span class="quick-icon">📍</span>
+        <h3>Location</h3>
+        <p>Near McDonald's & Arby's</p>
+        <a href="#">Moncton, NB</a>
+      </div>
+      <div class="quick-item">
+        <span class="quick-icon">🚗</span>
+        <h3>Pick-Up Available</h3>
+        <p>We come to you — ask when booking</p>
+        <a href="tel:5069406494">Ask about this</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTACT -->
+<section class="section-wrap">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- INFO -->
+      <div data-aos="fade-right">
+        <div class="section-tag">Get in Touch</div>
+        <h2 class="section-title">We'd Love to<br>Hear From You</h2>
+        <div class="gold-line"></div>
+
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-icon">📞</div>
+            <div>
+              <h4>Phone / Text</h4>
+              <a href="tel:5069406494">(506) 940-6494</a>
+              <span class="sub">Call or text anytime — quick responses guaranteed</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">📍</div>
+            <div>
+              <h4>Location</h4>
+              <p>Moncton, New Brunswick</p>
+              <span class="sub">Near McDonald's & Arby's. Drop-off available in advance.</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">🚗</div>
+            <div>
+              <h4>Pick-Up & Drop-Off</h4>
+              <p>Available on request</p>
+              <span class="sub">We can pick up your vehicle and bring it back when done.</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">⭐</div>
+            <div>
+              <h4>Google Rating</h4>
+              <p>5.0 · 90+ Reviews</p>
+              <span class="sub">Moncton's highest-rated car detailer on Google.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hours-card" style="margin-top: 24px;">
+          <h3>🕐 Hours of Operation</h3>
+          <table class="hours-table">
+            <tr>
+              <td>Monday – Friday</td>
+              <td>9:00 AM – 6:00 PM</td>
+            </tr>
+            <tr>
+              <td>Saturday</td>
+              <td>9:00 AM – 5:00 PM</td>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td>By Appointment</td>
+            </tr>
+          </table>
+          <p style="font-size:0.78rem; color:var(--muted); margin-top:14px;">* Hours may vary. Call ahead to confirm availability.</p>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div data-aos="fade-left" data-aos-delay="100">
+        <div class="form-card">
+          <h2>Book an Appointment</h2>
+          <p>Fill out the form below and Dishant will get back to you quickly with a quote and available time slots.</p>
+
+          <div class="form-success" id="success">
+            <div class="check">✓</div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out. Dishant will be in touch shortly.<br>Or call directly at <a href="tel:5069406494" style="color:var(--gold)">(506) 940-6494</a>.</p>
+          </div>
+
+          <form id="bookingForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name <span>*</span></label>
+                <input type="text" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label>Last Name <span>*</span></label>
+                <input type="text" placeholder="Smith" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Phone <span>*</span></label>
+                <input type="tel" placeholder="(506) 000-0000" required />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="you@example.com" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Vehicle <span>*</span></label>
+                <input type="text" placeholder="e.g. 2020 Honda Civic" required />
+              </div>
+              <div class="form-group">
+                <label>Vehicle Type</label>
+                <select>
+                  <option value="">Select type</option>
+                  <option>Sedan</option>
+                  <option>SUV / Crossover</option>
+                  <option>Truck</option>
+                  <option>Van / Minivan</option>
+                  <option>Luxury / Exotic</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Service Needed <span>*</span></label>
+              <select required>
+                <option value="">Select a service</option>
+                <option>Interior Refresh (from $80)</option>
+                <option>Interior Deep Clean (from $130)</option>
+                <option>Full Detail Package (from $200)</option>
+                <option>Stain & Odour Removal</option>
+                <option>Not sure — need a quote</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message / Additional Notes</label>
+              <textarea placeholder="Tell us about any specific concerns — pet hair, stains, smoke smell, etc."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Booking Request →</button>
+            <p class="form-disclaimer">No spam, ever. Your info is only used to get back to you about your booking.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BOOK STRIP -->
+<section class="section-wrap dark">
+  <div class="container">
+    <div style="text-align:center;" data-aos="fade-up">
+      <div class="section-tag">Why Book With Us</div>
+      <h2 class="section-title">The DC Difference</h2>
+      <div class="gold-line" style="margin: 18px auto 48px;"></div>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px;" data-aos="fade-up" data-aos-delay="60">
+      <div style="text-align:center; padding: 28px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(245,168,0,0.45)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(245,168,0,0.13)'; this.style.transform=''">
+        <div style="font-size:2rem; margin-bottom:12px;">⚡</div>
+        <h4 style="font-size:0.95rem; margin-bottom:6px;">Fast Turnaround</h4>
+        <p style="font-size:0.8rem; color:var(--muted);">Most details completed in 2–4 hours.</p>
+      </div>
+      <div style="text-align:center; padding: 28px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(245,168,0,0.45)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(245,168,0,0.13)'; this.style.transform=''">
+        <div style="font-size:2rem; margin-bottom:12px;">💯</div>
+        <h4 style="font-size:0.95rem; margin-bottom:6px;">Satisfaction Guaranteed</h4>
+        <p style="font-size:0.8rem; color:var(--muted);">90+ five-star reviews speak for themselves.</p>
+      </div>
+      <div style="text-align:center; padding: 28px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(245,168,0,0.45)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(245,168,0,0.13)'; this.style.transform=''">
+        <div style="font-size:2rem; margin-bottom:12px;">🚗</div>
+        <h4 style="font-size:0.95rem; margin-bottom:6px;">Pick-Up & Drop-Off</h4>
+        <p style="font-size:0.8rem; color:var(--muted);">We come to you — no hassle, no extra trips.</p>
+      </div>
+      <div style="text-align:center; padding: 28px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; transition: all 0.3s;" onmouseover="this.style.borderColor='rgba(245,168,0,0.45)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(245,168,0,0.13)'; this.style.transform=''">
+        <div style="font-size:2rem; margin-bottom:12px;">💰</div>
+        <h4 style="font-size:0.95rem; margin-bottom:6px;">Honest Pricing</h4>
+        <p style="font-size:0.8rem; color:var(--muted);">No surprises. Quote confirmed before we start.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="logo"><img src="photo_0004.jpg" alt="DC Detailing" /><span>DC Detailing Services</span></a><p>Moncton's most trusted car detailing service. We treat every vehicle like our own, delivering showroom results every time.</p></div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Interior Detailing</a></li><li><a href="services.html">Exterior Detailing</a></li><li><a href="services.html">Full Detail Package</a></li><li><a href="services.html">Stain & Odour Removal</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><a href="tel:5069406494" class="big-phone">(506) 940-6494</a><p>Moncton, NB<br>Canada</p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 DC Detailing Services · Moncton, NB · All rights reserved.</p><div class="footer-badge">⭐ 5.0 on Google Reviews</div></div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ once: true, duration: 650, easing: 'ease-out', offset: 60 });
+  } else {
+    document.querySelectorAll('[data-aos]').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+  }
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+  nav.classList.toggle('scrolled', scrollY > 20);
+  const ham = document.getElementById('ham'); const mob = document.getElementById('mob');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
+  const page = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(a => { if (a.getAttribute('href') === page) a.classList.add('active'); });
+
+  // Form submit
+  document.getElementById('bookingForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('bookingForm').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+  });
+</script>
+</body>
+</html>

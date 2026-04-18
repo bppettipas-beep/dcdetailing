@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services & Pricing – DC Detailing Services Moncton</title>
+  <link rel="icon" href="photo_0004.jpg" />
+  <link rel="apple-touch-icon" href="photo_0004.jpg" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    /* ── SERVICES DETAIL ── */
+    .svc-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .svc-detail-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svc-detail-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s;
+    }
+
+    .svc-detail-card:hover {
+      border-color: var(--border-h);
+      transform: translateY(-4px);
+      box-shadow: var(--glow);
+    }
+
+    .svc-detail-card:hover::after { transform: scaleX(1); }
+
+    .svc-detail-icon {
+      font-size: 2.6rem;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .svc-detail-card h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .svc-detail-card > p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.72;
+      margin-bottom: 24px;
+    }
+
+    .svc-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .svc-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.87rem;
+      color: var(--light);
+      line-height: 1.5;
+    }
+
+    .svc-checklist li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 900;
+      font-size: 0.82rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+      background: rgba(245,168,0,0.12);
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .pricing-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 38px 30px;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--glow);
+    }
+
+    .pricing-card.popular {
+      border-color: var(--gold);
+      background: linear-gradient(160deg, #1f1800, #161616 60%);
+      box-shadow: 0 0 60px rgba(245,168,0,0.12);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .pricing-tier {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 24px;
+      min-height: 52px;
+    }
+
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-from {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .pricing-amount {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .pricing-plus {
+      font-size: 0.8rem;
+      color: var(--muted);
+      align-self: flex-end;
+      padding-bottom: 4px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.87rem;
+      color: var(--light);
+    }
+
+    .pricing-features li .tick {
+      width: 18px; height: 18px;
+      min-width: 18px;
+      background: rgba(245,168,0,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 900;
+    }
+
+    .pricing-features li.faded { color: var(--muted); }
+    .pricing-features li.faded .tick {
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+    }
+
+    .pricing-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── ADD-ONS ── */
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .addon-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 20px;
+      text-align: center;
+      transition: all 0.25s;
+    }
+
+    .addon-card:hover {
+      border-color: var(--border-h);
+      transform: translateY(-3px);
+    }
+
+    .addon-icon { font-size: 1.8rem; margin-bottom: 10px; display: block; }
+    .addon-card h4 { font-size: 0.9rem; font-weight: 800; margin-bottom: 6px; }
+    .addon-card p { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 780px; }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.25s;
+    }
+
+    .faq-item.open { border-color: rgba(245,168,0,0.3); }
+
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      gap: 16px;
+    }
+
+    .faq-q:hover { color: var(--gold); }
+
+    .faq-arrow {
+      width: 28px; height: 28px; min-width: 28px;
+      background: rgba(245,168,0,0.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: var(--gold);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+
+    .faq-item.open .faq-a { max-height: 300px; }
+
+    .faq-a p {
+      padding: 0 24px 20px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .svc-detail-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+      .addons-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .addons-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="photo_0004.jpg" alt="DC Detailing Services" />
+      <div class="nav-logo-text">
+        <span class="name">DC Detailing</span>
+        <span class="sub">Services</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mob">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="reviews.html">Reviews</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="m-cta">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span>Services</div>
+    <h1>Our <span class="gradient-text">Services</span></h1>
+    <p>Premium detailing packages tailored to every vehicle and budget. From a quick refresh to a full transformation.</p>
+  </div>
+</div>
+
+<!-- SERVICES DETAIL -->
+<section class="section-wrap">
+  <div class="container">
+    <div class="section-tag" data-aos="fade-up">What We Do</div>
+    <h2 class="section-title" data-aos="fade-up" data-aos-delay="60">Every Service,<br>Done Right</h2>
+    <div class="gold-line" data-aos="fade-up" data-aos-delay="100"></div>
+    <div class="svc-detail-grid">
+      <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="0">
+        <span class="svc-detail-icon">🪑</span>
+        <h3>Interior Detailing</h3>
+        <p>A thorough deep clean of every surface inside your vehicle. We leave nothing untouched — from the headliner to the floor mats.</p>
+        <ul class="svc-checklist">
+          <li>Full vacuum of seats, carpets & trunk</li>
+          <li>Dashboard, console & door panel wipe-down</li>
+          <li>Air vent brushing & detailing</li>
+          <li>Leather/fabric seat conditioning</li>
+          <li>Window & mirror cleaning (interior)</li>
+          <li>Odour elimination treatment</li>
+          <li>Cup holder & crevice deep clean</li>
+        </ul>
+      </div>
+      <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="80">
+        <span class="svc-detail-icon">✨</span>
+        <h3>Exterior Detailing</h3>
+        <p>We restore your paint's original brilliance and protect it from the elements. Your car will turn heads every time you drive it.</p>
+        <ul class="svc-checklist">
+          <li>Professional hand wash & rinse</li>
+          <li>Clay bar decontamination</li>
+          <li>Paint polish to remove light scratches</li>
+          <li>Protective wax or sealant application</li>
+          <li>Tire dressing & wheel cleaning</li>
+          <li>Exterior trim restoration</li>
+          <li>Window & mirror cleaning (exterior)</li>
+        </ul>
+      </div>
+      <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="160">
+        <span class="svc-detail-icon">🚗</span>
+        <h3>Full Detail Package</h3>
+        <p>The ultimate treatment — everything in our interior and exterior packages combined. Perfect for pre-sale prep or a seasonal deep clean.</p>
+        <ul class="svc-checklist">
+          <li>Complete interior deep clean</li>
+          <li>Full exterior wash, polish & wax</li>
+          <li>Engine bay wipe-down</li>
+          <li>Headlight restoration</li>
+          <li>Stain & odour removal treatment</li>
+          <li>Final inspection & touch-up</li>
+          <li>Pick-up & drop-off available</li>
+        </ul>
+      </div>
+      <div class="svc-detail-card" data-aos="fade-up" data-aos-delay="240">
+        <span class="svc-detail-icon">🧽</span>
+        <h3>Stain & Odour Removal</h3>
+        <p>Stubborn stains, pet hair, smoke, spills — we use professional-grade products and techniques to restore your interior to a like-new state.</p>
+        <ul class="svc-checklist">
+          <li>Hot water extraction for deep stains</li>
+          <li>Pet hair removal</li>
+          <li>Smoke & odour neutralization</li>
+          <li>Biological stain treatment</li>
+          <li>Enzyme-based odour eliminator</li>
+          <li>Seat fabric or leather restoration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section-wrap dark">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-tag" data-aos="fade-up">Pricing</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="60">Simple, Transparent<br>Packages</h2>
+      <p class="section-sub" style="margin: 0 auto 52px; text-align:center;" data-aos="fade-up" data-aos-delay="100">
+        Prices vary by vehicle size & condition. Call Dishant for a custom quote.
+      </p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="pricing-tier">Starter</div>
+        <h3>Interior Refresh</h3>
+        <p class="desc">A thorough clean for everyday drivers who want a fresh, tidy interior.</p>
+        <div class="pricing-price">
+          <span class="pricing-from">From</span>
+          <span class="pricing-amount">$80</span>
+          <span class="pricing-plus">+</span>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="tick">✓</span> Full vacuum</li>
+          <li><span class="tick">✓</span> Wipe-down & dust removal</li>
+          <li><span class="tick">✓</span> Interior windows</li>
+          <li><span class="tick">✓</span> Door panel wipe</li>
+          <li class="faded"><span class="tick">—</span> Stain treatment</li>
+          <li class="faded"><span class="tick">—</span> Leather conditioning</li>
+          <li class="faded"><span class="tick">—</span> Exterior included</li>
+        </ul>
+        <a href="contact.html" class="btn btn-ghost" style="width:100%; justify-content:center;">Get a Quote</a>
+      </div>
+
+      <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="100">
+        <div class="popular-badge">Most Popular</div>
+        <div class="pricing-tier">Premium</div>
+        <h3>Interior Deep Clean</h3>
+        <p class="desc">Our most popular service — a thorough deep clean including conditioning and stain removal.</p>
+        <div class="pricing-price">
+          <span class="pricing-from">From</span>
+          <span class="pricing-amount">$130</span>
+          <span class="pricing-plus">+</span>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="tick">✓</span> Full vacuum & extract</li>
+          <li><span class="tick">✓</span> Complete wipe & detail</li>
+          <li><span class="tick">✓</span> Interior windows & vents</li>
+          <li><span class="tick">✓</span> Stain treatment</li>
+          <li><span class="tick">✓</span> Leather/fabric conditioning</li>
+          <li><span class="tick">✓</span> Odour removal</li>
+          <li class="faded"><span class="tick">—</span> Exterior included</li>
+        </ul>
+        <a href="contact.html" class="btn btn-gold" style="width:100%; justify-content:center;">Book Now</a>
+      </div>
+
+      <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="pricing-tier">Ultimate</div>
+        <h3>Full Detail</h3>
+        <p class="desc">Complete inside-out transformation. Showroom ready every time.</p>
+        <div class="pricing-price">
+          <span class="pricing-from">From</span>
+          <span class="pricing-amount">$200</span>
+          <span class="pricing-plus">+</span>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="tick">✓</span> Everything in Deep Clean</li>
+          <li><span class="tick">✓</span> Hand wash & clay bar</li>
+          <li><span class="tick">✓</span> Paint polish & wax</li>
+          <li><span class="tick">✓</span> Tire & wheel detail</li>
+          <li><span class="tick">✓</span> Exterior trim restoration</li>
+          <li><span class="tick">✓</span> Pick-up & drop-off</li>
+          <li><span class="tick">✓</span> Final inspection</li>
+        </ul>
+        <a href="contact.html" class="btn btn-ghost" style="width:100%; justify-content:center;">Get a Quote</a>
+      </div>
+    </div>
+    <p class="pricing-note">* Starting prices listed. Final price depends on vehicle size (sedan, SUV, truck) and condition. Always confirmed before work begins.</p>
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section class="section-wrap">
+  <div class="container">
+    <div class="section-tag" data-aos="fade-up">Extras</div>
+    <h2 class="section-title" data-aos="fade-up" data-aos-delay="60">Available Add-Ons</h2>
+    <div class="gold-line" data-aos="fade-up" data-aos-delay="100"></div>
+    <div class="addons-grid">
+      <div class="addon-card" data-aos="fade-up" data-aos-delay="0">
+        <span class="addon-icon">🚘</span>
+        <h4>Pick-Up & Drop-Off</h4>
+        <p>We come to you — perfect for busy schedules.</p>
+      </div>
+      <div class="addon-card" data-aos="fade-up" data-aos-delay="60">
+        <span class="addon-icon">💡</span>
+        <h4>Headlight Restoration</h4>
+        <p>Restore clarity and brightness to foggy lenses.</p>
+      </div>
+      <div class="addon-card" data-aos="fade-up" data-aos-delay="120">
+        <span class="addon-icon">🐾</span>
+        <h4>Pet Hair Removal</h4>
+        <p>Full pet hair extraction from all surfaces.</p>
+      </div>
+      <div class="addon-card" data-aos="fade-up" data-aos-delay="180">
+        <span class="addon-icon">🔧</span>
+        <h4>Engine Bay Clean</h4>
+        <p>Degreased and detailed engine compartment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-wrap dark">
+  <div class="container">
+    <div class="section-tag" data-aos="fade-up">FAQ</div>
+    <h2 class="section-title" data-aos="fade-up" data-aos-delay="60">Common Questions</h2>
+    <div class="gold-line" data-aos="fade-up" data-aos-delay="100"></div>
+    <div class="faq-list" data-aos="fade-up" data-aos-delay="140">
+      <div class="faq-item">
+        <div class="faq-q">How long does a full detail take?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><p>Typically 2–4 hours depending on the vehicle size and condition. We always give you an estimated time before starting, and we work efficiently without cutting corners.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you offer pick-up and drop-off?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><p>Yes! We offer flexible drop-off options and can pick up your vehicle. You can also drop off your car in advance if that works better for your schedule. Just call to arrange.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I know what package is right for me?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><p>Give Dishant a call at (506) 940-6494 and describe your vehicle's condition. He'll recommend the best option and give you an honest, transparent quote before anything begins.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can you remove stubborn pet hair or smoke odour?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><p>Absolutely. We use professional-grade hot water extraction and enzyme-based odour treatments that tackle even the toughest pet hair, smoke, and biological stains effectively.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do prices vary by vehicle size?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><p>Yes — sedans, SUVs, and trucks are priced differently due to the difference in interior and exterior surface area. The starting prices shown are for standard sedans. Call for an exact quote on your vehicle.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-tag" data-aos="fade-up">Book Today</div>
+    <h2 data-aos="fade-up" data-aos-delay="60">Let Dishant Transform<br><span class="gradient-text">Your Vehicle</span></h2>
+    <p data-aos="fade-up" data-aos-delay="120">Call now for a custom quote. No pressure, no hidden fees — just great results.</p>
+    <div class="cta-btns" data-aos="fade-up" data-aos-delay="180">
+      <a href="tel:5069406494" class="btn btn-gold">📞 &nbsp;(506) 940-6494</a>
+      <a href="contact.html" class="btn btn-outline">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><img src="photo_0004.jpg" alt="DC Detailing" /><span>DC Detailing Services</span></a>
+        <p>Moncton's most trusted car detailing service. We treat every vehicle like our own, delivering showroom results every time.</p>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Interior Detailing</a></li><li><a href="services.html">Exterior Detailing</a></li><li><a href="services.html">Full Detail Package</a></li><li><a href="services.html">Stain & Odour Removal</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><a href="tel:5069406494" class="big-phone">(506) 940-6494</a><p>Moncton, NB<br>Canada</p></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DC Detailing Services · Moncton, NB · All rights reserved.</p>
+      <div class="footer-badge">⭐ 5.0 on Google Reviews</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ once: true, duration: 650, easing: 'ease-out', offset: 60 });
+  } else {
+    document.querySelectorAll('[data-aos]').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+  }
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+  nav.classList.toggle('scrolled', scrollY > 20);
+  const ham = document.getElementById('ham');
+  const mob = document.getElementById('mob');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
+  const page = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(a => {
+    if (a.getAttribute('href') === page) a.classList.add('active');
+  });
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('open'); });
+      item.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
