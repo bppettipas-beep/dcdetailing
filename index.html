@@ -1275,7 +1275,11 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init({ once: true, duration: 700, easing: 'ease-out', offset: 50 });
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ once: true, duration: 700, easing: 'ease-out', offset: 50 });
+  } else {
+    document.querySelectorAll('[data-aos]').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+  }
 
   // Nav scroll
   const nav = document.getElementById('navbar');
