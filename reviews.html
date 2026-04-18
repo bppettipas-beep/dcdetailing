@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews – DC Detailing Services Moncton</title>
+  <link rel="icon" href="photo_0004.jpg" />
+  <link rel="apple-touch-icon" href="photo_0004.jpg" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    /* ── RATING HERO ── */
+    .rating-hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+
+    .big-rating {
+      text-align: center;
+    }
+
+    .big-rating .num {
+      font-size: 5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .big-rating .stars-lg {
+      font-size: 1.5rem;
+      color: var(--gold);
+      letter-spacing: 4px;
+      margin: 8px 0;
+    }
+
+    .big-rating p { font-size: 0.85rem; color: var(--muted); }
+
+    .rating-bars { min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+
+    .bar-label { color: var(--muted); min-width: 36px; text-align: right; }
+    .bar-track {
+      flex: 1; height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .bar-fill { height: 100%; background: var(--gold); border-radius: 3px; transition: width 1.2s ease; }
+    .bar-count { color: var(--muted); min-width: 24px; }
+
+    /* ── FILTER TABS ── */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
+    /* ── REVIEWS GRID ── */
+    .reviews-masonry {
+      columns: 3;
+      column-gap: 20px;
+    }
+
+    .rev-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      margin-bottom: 20px;
+      break-inside: avoid;
+      transition: all 0.3s;
+    }
+
+    .rev-card:hover {
+      border-color: rgba(245,168,0,0.3);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      transform: translateY(-3px);
+    }
+
+    .rev-stars { font-size: 0.85rem; color: var(--gold); letter-spacing: 1.5px; margin-bottom: 10px; }
+
+    .rev-text {
+      font-size: 0.88rem;
+      color: #c8c8c8;
+      line-height: 1.72;
+      margin-bottom: 16px;
+    }
+
+    .rev-footer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .rev-av {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 0.82rem;
+      color: var(--black); flex-shrink: 0;
+    }
+
+    .rev-name { font-size: 0.85rem; font-weight: 700; }
+    .rev-meta { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+    .rev-badge {
+      margin-left: auto;
+      font-size: 0.65rem;
+      background: rgba(66,133,244,0.15);
+      color: #7aadff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .reviews-masonry { columns: 2; }
+    }
+
+    @media (max-width: 560px) {
+      .reviews-masonry { columns: 1; }
+      .rating-hero { gap: 32px; }
+      .big-rating .num { font-size: 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="photo_0004.jpg" alt="DC Detailing Services" />
+      <div class="nav-logo-text">
+        <span class="name">DC Detailing</span>
+        <span class="sub">Services</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mob">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="reviews.html">Reviews</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="m-cta">Book Now</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span>Reviews</div>
+    <h1>What Our <span class="gradient-text">Customers</span> Say</h1>
+    <p>90+ verified 5-star reviews from real customers in Moncton and beyond. We let their words do the talking.</p>
+    <div class="rating-hero">
+      <div class="big-rating">
+        <div class="num">5.0</div>
+        <div class="stars-lg">★★★★★</div>
+        <p>Based on 90+ Google Reviews</p>
+      </div>
+      <div class="rating-bars">
+        <div class="bar-row">
+          <span class="bar-label">5 ★</span>
+          <div class="bar-track"><div class="bar-fill" style="width:97%"></div></div>
+          <span class="bar-count">~90</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">4 ★</span>
+          <div class="bar-track"><div class="bar-fill" style="width:3%"></div></div>
+          <span class="bar-count">~3</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">3 ★</span>
+          <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+          <span class="bar-count">0</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">2 ★</span>
+          <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+          <span class="bar-count">0</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">1 ★</span>
+          <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+          <span class="bar-count">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<section class="section-wrap">
+  <div class="container">
+    <div class="section-tag" data-aos="fade-up">Verified Reviews</div>
+    <h2 class="section-title" data-aos="fade-up" data-aos-delay="60">Real People,<br>Real Results</h2>
+    <div class="gold-line" data-aos="fade-up" data-aos-delay="100"></div>
+
+    <div class="reviews-masonry" data-aos="fade-up" data-aos-delay="120">
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"My first and best experience ever — truly! From the moment I got my car serviced to when I walked back to it, I was honestly stunned. It looked just like the day I bought it. The seats, interior, mats and floor were spotless — literally like new. Best part is they're super budget-friendly. Highly recommend!"</p>
+        <div class="rev-footer"><div class="rev-av">R</div><div><div class="rev-name">Ridhi Rahar</div><div class="rev-meta">5 days ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"I had an excellent experience with DC Detailing Services. Dishant was incredibly professional, punctual, and took the time to explain the entire cleaning process. It's clear they don't cut corners. Highly recommend!"</p>
+        <div class="rev-footer"><div class="rev-av">G</div><div><div class="rev-name">GURJEET SINGH</div><div class="rev-meta">5 days ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"I had an excellent experience with DC Detailing today — truly the best in town. I especially want to mention Dishant, who was incredibly friendly and took the time to explain everything. Highly recommend them to everyone."</p>
+        <div class="rev-footer"><div class="rev-av">N</div><div><div class="rev-name">Nikhil</div><div class="rev-meta">2 weeks ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Amazing job. My car looks brand new! The owner has an incredible attention to detail and really took his time to make sure he got every spot inside and outside of the car."</p>
+        <div class="rev-footer"><div class="rev-av">E</div><div><div class="rev-name">Emily Ward</div><div class="rev-meta">5 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Amazing job by the DC. He treated my car like his own and the results were awesome. Super friendly and professional. I even travelled all the way from PEI just for his service, and it was totally worth it. I'll definitely be coming back."</p>
+        <div class="rev-footer"><div class="rev-av">V</div><div><div class="rev-name">Vanshdeep Singh Chahal</div><div class="rev-meta">5 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Absolutely phenomenal job! I was incredibly impressed by DC's attention to detail — he truly treated my car like it was his own. Every inch was spotless, and the results far exceeded my expectations."</p>
+        <div class="rev-footer"><div class="rev-av">A</div><div><div class="rev-name">Ashley Robichaud</div><div class="rev-meta">10 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Honestly they did an awesome job! I was a bit hesitant as I am new to the area. But they did a spectacular job — my car interior is shiny and smells great again, looks so clean! Just like the day I bought it if not better! Highly recommend!"</p>
+        <div class="rev-footer"><div class="rev-av">J</div><div><div class="rev-name">Jaswinder Kaur</div><div class="rev-meta">3 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"I recently had my car detailed and it looks exceptional. The interior is immaculate, with the seats, carpets and even the hard-to-reach areas thoroughly cleaned. Highly recommended. The work was professional and of the highest quality."</p>
+        <div class="rev-footer"><div class="rev-av">M</div><div><div class="rev-name">Manjinder Singh</div><div class="rev-meta">4 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"DC was great! My SUV was spotless inside and out. Price was great. DC has an amazing personality and takes pride in his work. I highly recommend him!!"</p>
+        <div class="rev-footer"><div class="rev-av">D</div><div><div class="rev-name">Deb T</div><div class="rev-meta">6 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"I am very glad I tried DC! Quick responses, friendly service and excellent work that he is proud of! My experience was hassle-free and stress-free. You can drop your car off in advance if you want."</p>
+        <div class="rev-footer"><div class="rev-av">L</div><div><div class="rev-name">Louise Jalbert</div><div class="rev-meta">4 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"The attention to detail was on another level — the interior looked brand new, the exterior had a perfect shine, and even the small spots most people miss were taken care of. Professional, on time, and worth every dollar."</p>
+        <div class="rev-footer"><div class="rev-av">P</div><div><div class="rev-name">Punjab Solar</div><div class="rev-meta">4 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"They did a fabulous job on my SUV today. It looks like a brand new car on the inside. I was shocked how great it looked! He brought my car to me so I did not have to arrange a drive back there."</p>
+        <div class="rev-footer"><div class="rev-av">B</div><div><div class="rev-name">Barb Miles</div><div class="rev-meta">10 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Got both my interior and exterior detailing done and the results were perfect. Dishant at DC Car Detailing did an amazing job — my car looks brand new inside and out. Highly recommend their services!"</p>
+        <div class="rev-footer"><div class="rev-av">A</div><div><div class="rev-name">Ashrey Khanna</div><div class="rev-meta">7 months ago</div></div><span class="rev-badge">Local Guide</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"I had the interior of my Honda CR-V detailed by Dishant and I couldn't be more satisfied. My leather seats were starting to lose their shine, but Dishant did an amazing job restoring them — they now look and feel like new."</p>
+        <div class="rev-footer"><div class="rev-av">P</div><div><div class="rev-name">Parth Patel</div><div class="rev-meta">10 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Excellent work, got my 2015 BMW 5 series interior detailing from DC. He really changed my car and is looking so good now. Will definitely recommend everyone to visit if you need your car detailed."</p>
+        <div class="rev-footer"><div class="rev-av">A</div><div><div class="rev-name">Avi Chaudhary</div><div class="rev-meta">4 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Great service from start to finish!! DC was very professional, efficient, and truly went above and beyond to ensure everything was perfect. The quality of the job was outstanding, and his attention to detail did not go unnoticed."</p>
+        <div class="rev-footer"><div class="rev-av">R</div><div><div class="rev-name">Raghav Kaushal</div><div class="rev-meta">10 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Great guy and great service. He told me it would take 3 hours but everything was done in under 2 hours. He even offers pick up and drop off service. My car looks brand new — even cleaner than when I got it from the dealership."</p>
+        <div class="rev-footer"><div class="rev-av">R</div><div><div class="rev-name">Rutvik Mistry</div><div class="rev-meta">10 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"I recently had my car detailed at DC detailing services in Moncton and I am absolutely thrilled with the results. They are very professional and communicative. The interior was stained and they did a fantastic job removing it."</p>
+        <div class="rev-footer"><div class="rev-av">D</div><div><div class="rev-name">Dhanireddy Sai Charan</div><div class="rev-meta">10 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Best in the town. I have seen this guy's love and passion about cars so it's definitely not just a job for him. Give him a chance and you will feel the difference between business and passion."</p>
+        <div class="rev-footer"><div class="rev-av">G</div><div><div class="rev-name">Gurbhej Hanjrah</div><div class="rev-meta">2 years ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"I got my Honda Civic detailed and it looks brand new! Interior is spotless, paint is shining, and they even cleaned all the little corners. Super professional and friendly team. Highly recommend!"</p>
+        <div class="rev-footer"><div class="rev-av">K</div><div><div class="rev-name">Khushi Dehla</div><div class="rev-meta">9 months ago</div></div><span class="rev-badge">Local Guide</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Reasonable price, best in town! Quick service & very trustworthy. The products he is using to wash and clean are perfect for the car. He knows his work and what he is doing!"</p>
+        <div class="rev-footer"><div class="rev-av">T</div><div><div class="rev-name">Tanvir Kamboj</div><div class="rev-meta">2 years ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Would definitely recommend DC Detailing Services and will be coming back in the future. Great prices and great service. My 8-year-old car looked almost brand new again!"</p>
+        <div class="rev-footer"><div class="rev-av">L</div><div><div class="rev-name">Leah Picard</div><div class="rev-meta">5 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"They are amazing, my SUV looks brand new. Reasonable rates, good people skills, respond straight away. Highly recommend."</p>
+        <div class="rev-footer"><div class="rev-av">R</div><div><div class="rev-name">Rachel Stewart</div><div class="rev-meta">8 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Booked DC Detailing service for my 7-seater Sienna! They made it look brand new inside. Interior was spotless, every corner shining. Highly recommend!"</p>
+        <div class="rev-footer"><div class="rev-av">F</div><div><div class="rev-name">Frank Gahunde</div><div class="rev-meta">7 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Outstanding service by DC — highly recommended. Top notch service with equipment and experience. Best in town."</p>
+        <div class="rev-footer"><div class="rev-av">A</div><div><div class="rev-name">Ashutosh Mehta</div><div class="rev-meta">10 months ago</div></div><span class="rev-badge">Local Guide</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Very humble person and did work on my car over and beyond my expectation. Will surely recommend to my friends. Will be back to DC for more works."</p>
+        <div class="rev-footer"><div class="rev-av">S</div><div><div class="rev-name">Sreekanth Menon</div><div class="rev-meta">10 months ago</div></div><span class="rev-badge">Local Guide</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"A trusted person to give your car to. They are keen to details and do their job with efficiency. Have been dropping my car from a year to get it detailed."</p>
+        <div class="rev-footer"><div class="rev-av">V</div><div><div class="rev-name">Vivek Jaggi</div><div class="rev-meta">10 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"When I saw my car all clean I was speechless — this is my go-to place from now on to clean my car!"</p>
+        <div class="rev-footer"><div class="rev-av">M</div><div><div class="rev-name">Manon Dugas</div><div class="rev-meta">a year ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"DC Detailing provided exceptional service with meticulous attention to detail. Friendly staff, reasonable pricing, and timely delivery. Highly recommend for premium car care!"</p>
+        <div class="rev-footer"><div class="rev-av">I</div><div><div class="rev-name">Inder Preet</div><div class="rev-meta">5 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Outstanding interior detailing service! The attention to detail and quality of work were top-notch. My vehicle's interior looks immaculate and smells fantastic. Highly recommend!"</p>
+        <div class="rev-footer"><div class="rev-av">L</div><div><div class="rev-name">Lovish Soni</div><div class="rev-meta">5 months ago</div></div><span class="rev-badge">Local Guide</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"I recently had my car detailed and I'm honestly super impressed! The attention to detail was amazing — my car looks as clean as the day I got it."</p>
+        <div class="rev-footer"><div class="rev-av">H</div><div><div class="rev-name">Harmanjot Singh</div><div class="rev-meta">5 days ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Great service, my car looks super clean under pocket friendly budget. I'll definitely come back. Thank you!"</p>
+        <div class="rev-footer"><div class="rev-av">A</div><div><div class="rev-name">Amandeep Singh</div><div class="rev-meta">6 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Excellent car cleaning service! Super professional, attention to detail, and very reasonable pricing — totally worth it! Highly recommend to anyone who loves keeping their car spotless."</p>
+        <div class="rev-footer"><div class="rev-av">Y</div><div><div class="rev-name">Yuvraj D</div><div class="rev-meta">6 months ago</div></div><span class="rev-badge">Google</span></div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top: 48px;" data-aos="fade-up">
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 20px;">Want to leave a review? We'd love to hear from you.</p>
+      <a href="contact.html" class="btn btn-gold">Book Your Detail Today</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-tag" data-aos="fade-up">Join Our Happy Customers</div>
+    <h2 data-aos="fade-up" data-aos-delay="60">Your 5-Star Experience<br><span class="gradient-text">Awaits</span></h2>
+    <p data-aos="fade-up" data-aos-delay="120">Call Dishant and see why 90+ customers can't stop talking about DC Detailing.</p>
+    <div class="cta-btns" data-aos="fade-up" data-aos-delay="180">
+      <a href="tel:5069406494" class="btn btn-gold">📞 &nbsp;(506) 940-6494</a>
+      <a href="services.html" class="btn btn-outline">View Services</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="logo"><img src="photo_0004.jpg" alt="DC Detailing" /><span>DC Detailing Services</span></a><p>Moncton's most trusted car detailing service. We treat every vehicle like our own, delivering showroom results every time.</p></div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Interior Detailing</a></li><li><a href="services.html">Exterior Detailing</a></li><li><a href="services.html">Full Detail Package</a></li><li><a href="services.html">Stain & Odour Removal</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><a href="tel:5069406494" class="big-phone">(506) 940-6494</a><p>Moncton, NB<br>Canada</p></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 DC Detailing Services · Moncton, NB · All rights reserved.</p><div class="footer-badge">⭐ 5.0 on Google Reviews</div></div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ once: true, duration: 650, easing: 'ease-out', offset: 60 });
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+  nav.classList.toggle('scrolled', scrollY > 20);
+  const ham = document.getElementById('ham'); const mob = document.getElementById('mob');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
+  const page = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(a => { if (a.getAttribute('href') === page) a.classList.add('active'); });
+</script>
+</body>
+</html>
