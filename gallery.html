@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — DC Detailing Services Moncton</title>
+  <meta name="description" content="See the results DC Detailing delivers. Photos of detailed interiors and exteriors from real Moncton customer vehicles." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="photo_0004.jpg" alt="DC Detailing Services logo" />
+      <span>DC Detailing</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <h1>Our <span>Work</span></h1>
+    <p>Every photo is a real vehicle we've detailed. We take pride in every result.</p>
+  </div>
+
+  <!-- GALLERY -->
+  <section style="background: var(--bg);">
+    <div class="container">
+      <span class="section-label">Portfolio</span>
+      <h2 class="section-title">Results That <span>Speak For Themselves</span></h2>
+      <p class="section-sub">From luxury imports to family SUVs — we treat every car like it's our own.</p>
+
+      <div class="gallery-grid" id="galleryGrid">
+
+        <div class="gallery-item" data-src="photo_0001.jpg">
+          <img src="photo_0001.jpg" alt="BMW M Sport steering wheel and dashboard — interior detail" loading="lazy" />
+          <div class="overlay">🔍</div>
+        </div>
+
+        <div class="gallery-item" data-src="photo_0002.jpg">
+          <img src="photo_0002.jpg" alt="Vehicle interior detail" loading="lazy" />
+          <div class="overlay">🔍</div>
+        </div>
+
+        <div class="gallery-item" data-src="photo_0003.jpg">
+          <img src="photo_0003.jpg" alt="Dodge Charger interior — We Take Pride In Your Ride" loading="lazy" />
+          <div class="overlay">🔍</div>
+        </div>
+
+        <div class="gallery-item" data-src="photo_0005.jpg">
+          <img src="photo_0005.jpg" alt="Cadillac luxury interior detail" loading="lazy" />
+          <div class="overlay">🔍</div>
+        </div>
+
+        <div class="gallery-item" data-src="photo_0004.jpg">
+          <img src="photo_0004.jpg" alt="DC Detailing Services — Moncton NB" loading="lazy" />
+          <div class="overlay">🔍</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE STRIP -->
+  <section style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; padding: 60px 5%;">
+    <div class="container" style="max-width: 680px;">
+      <div style="font-size: 2rem; margin-bottom: 16px;">⭐⭐⭐⭐⭐</div>
+      <p style="font-size: 1.2rem; font-style: italic; color: #ccc; line-height: 1.7; margin-bottom: 20px;">
+        "Even cleaner than when I got it from the dealership."
+      </p>
+      <div style="font-size: 0.88rem; color: var(--muted);">— Rutvik Mistry, verified Google review</div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <h2>Want Your Car to Look <span>This Good?</span></h2>
+    <p>Book a detail today — results like these are just a call away.</p>
+    <div class="cta-btns">
+      <a href="tel:5069406494" class="btn btn-gold">📞 (506) 940-6494</a>
+      <a href="contact.html" class="btn btn-outline">Book Online →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="photo_0004.jpg" alt="DC Detailing logo" />
+        <h3>DC Detailing Services</h3>
+        <p>Moncton's top-rated auto detailing service. Professional, reliable, and passionate about every vehicle we touch.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact & Book</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:5069406494">(506) 940-6494</a>
+        <p>Moncton, New Brunswick</p>
+        <p style="margin-top:8px; font-size:0.82rem; color:var(--muted);">Mon–Fri: 9am–6pm<br />Sat: 9am–5pm<br />Sun: By Appointment</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 DC Detailing Services. All rights reserved.</span>
+      <span>Made by <a href="https://riftuidesign.com" target="_blank" rel="noopener" style="color:var(--gold);transition:opacity 0.2s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">riftuidesign.com</a></span>
+      <span>Moncton, NB · (506) 940-6494</span>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        lightboxImg.src = item.dataset.src;
+        lightboxImg.alt = item.querySelector('img').alt;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+  <div class="watermark">PROPERTY OF<br />RIFT UI DESIGN</div>
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Book — DC Detailing Services Moncton</title>
+  <meta name="description" content="Book your auto detail or get in touch with DC Detailing Services in Moncton, NB. Call (506) 940-6494." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="photo_0004.jpg" alt="DC Detailing Services logo" />
+      <span>DC Detailing</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html" class="active nav-cta">Book Now</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <h1>Contact & <span>Book</span></h1>
+    <p>Ready for a detail? Reach out by phone or fill in the form and we'll get back to you quickly.</p>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <section style="background: var(--bg);">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- LEFT: Info -->
+        <div class="contact-info-block">
+
+          <div>
+            <span class="section-label">Get In Touch</span>
+            <h2 class="section-title" style="margin-bottom: 24px;">We're Here to <span>Help</span></h2>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">📞</div>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:5069406494">(506) 940-6494</a>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">📍</div>
+            <div>
+              <h4>Location</h4>
+              <p>Moncton, New Brunswick, Canada</p>
+              <p style="font-size:0.82rem; color:var(--muted); margin-top:4px;">Near McDonald's & Arby's</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">🚗</div>
+            <div>
+              <h4>Pick-Up & Drop-Off</h4>
+              <p>Available on request</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">⏱️</div>
+            <div>
+              <h4>Turnaround Time</h4>
+              <p>Most details completed in 2–4 hours</p>
+            </div>
+          </div>
+
+          <div class="info-card" style="flex-direction: column; gap: 12px;">
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div class="info-icon">🕐</div>
+              <div>
+                <h4>Hours of Operation</h4>
+              </div>
+            </div>
+            <table class="hours-table">
+              <tr><td>Monday – Friday</td><td>9:00 AM – 6:00 PM</td></tr>
+              <tr><td>Saturday</td><td>9:00 AM – 5:00 PM</td></tr>
+              <tr><td>Sunday</td><td>By Appointment</td></tr>
+            </table>
+            <p style="font-size:0.78rem; color:var(--muted);">* Hours may vary. Call ahead to confirm.</p>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="contact-form">
+          <h3>Book Your Detail</h3>
+          <p class="sub">Fill out the form and we'll confirm your booking shortly.</p>
+
+          <form id="bookingForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="(506) 000-0000" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email (optional)</label>
+                <input type="email" id="email" name="email" placeholder="john@email.com" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="service">Service Requested</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Select a service...</option>
+                <option value="interior-refresh">Interior Refresh (from $80)</option>
+                <option value="interior-deep-clean">Interior Deep Clean (from $130)</option>
+                <option value="full-detail">Full Detail Package (from $200)</option>
+                <option value="stain-odour">Stain & Odour Removal</option>
+                <option value="exterior">Exterior Detailing</option>
+                <option value="not-sure">Not Sure — Need a Quote</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="vehicle">Vehicle (Year, Make, Model)</label>
+              <input type="text" id="vehicle" name="vehicle" placeholder="e.g. 2018 Honda Civic" required />
+            </div>
+
+            <div class="form-group">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" name="date" />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Additional Notes (optional)</label>
+              <textarea id="message" name="message" placeholder="Any specific concerns, stains, pet hair, etc."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center; font-size:1rem; padding:15px;">
+              Send Booking Request →
+            </button>
+
+            <p id="formSuccess" style="display:none; margin-top:16px; padding:14px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); border-radius:8px; color:#4ade80; font-size:0.9rem; text-align:center;">
+              ✅ Thanks! We'll be in touch shortly to confirm your booking.
+            </p>
+            <p id="formError" style="display:none; margin-top:16px; padding:14px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:8px; color:#f87171; font-size:0.9rem; text-align:center;">
+              ⚠️ Please fill in all required fields.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- REASSURANCE -->
+  <section style="background: var(--bg2); border-top: 1px solid var(--border);">
+    <div class="container" style="text-align:center; max-width:700px;">
+      <span class="section-label">Why Choose DC?</span>
+      <h2 class="section-title">Moncton's <span>Most Trusted</span> Detail</h2>
+      <div class="grid-3" style="margin-top:40px; text-align:left;">
+        <div style="padding:20px 16px;">
+          <div style="font-size:1.8rem; margin-bottom:10px;">⭐</div>
+          <h4 style="margin-bottom:6px; font-size:0.95rem;">5.0 Google Rating</h4>
+          <p style="font-size:0.85rem; color:var(--muted);">90+ verified five-star reviews from real Moncton customers.</p>
+        </div>
+        <div style="padding:20px 16px;">
+          <div style="font-size:1.8rem; margin-bottom:10px;">💛</div>
+          <h4 style="margin-bottom:6px; font-size:0.95rem;">Passion-Driven</h4>
+          <p style="font-size:0.85rem; color:var(--muted);">Dishant treats every car like it's his own — no shortcuts, ever.</p>
+        </div>
+        <div style="padding:20px 16px;">
+          <div style="font-size:1.8rem; margin-bottom:10px;">✅</div>
+          <h4 style="margin-bottom:6px; font-size:0.95rem;">100% Satisfaction</h4>
+          <p style="font-size:0.85rem; color:var(--muted);">We're not done until you're fully satisfied with the result.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <h2>Prefer to <span>Call Directly?</span></h2>
+    <p>We're available Mon–Sat and happy to answer any questions.</p>
+    <div class="cta-btns">
+      <a href="tel:5069406494" class="btn btn-gold">📞 (506) 940-6494</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="photo_0004.jpg" alt="DC Detailing logo" />
+        <h3>DC Detailing Services</h3>
+        <p>Moncton's top-rated auto detailing service. Professional, reliable, and passionate about every vehicle we touch.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact & Book</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:5069406494">(506) 940-6494</a>
+        <p>Moncton, New Brunswick</p>
+        <p style="margin-top:8px; font-size:0.82rem; color:var(--muted);">Mon–Fri: 9am–6pm<br />Sat: 9am–5pm<br />Sun: By Appointment</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 DC Detailing Services. All rights reserved.</span>
+      <span>Made by <a href="https://riftuidesign.com" target="_blank" rel="noopener" style="color:var(--gold);transition:opacity 0.2s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">riftuidesign.com</a></span>
+      <span>Moncton, NB · (506) 940-6494</span>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    const form = document.getElementById('bookingForm');
+    const success = document.getElementById('formSuccess');
+    const error = document.getElementById('formError');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      error.style.display = 'none';
+      success.style.display = 'none';
+
+      const firstName = form.firstName.value.trim();
+      const phone = form.phone.value.trim();
+      const service = form.service.value;
+      const vehicle = form.vehicle.value.trim();
+
+      if (!firstName || !phone || !service || !vehicle) {
+        error.style.display = 'block';
+        error.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+
+      success.style.display = 'block';
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      form.reset();
+    });
+
+    const dateInput = document.getElementById('date');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+  </script>
+
+  <div class="watermark">PROPERTY OF<br />RIFT UI DESIGN</div>
+
+</body>
+</html>
